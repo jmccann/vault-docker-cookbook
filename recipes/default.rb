@@ -16,3 +16,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+docker_image 'vault' do
+  repo node['vault']['repo']
+  tag node['vault']['tag']
+end
+
+docker_container 'vault server' do
+  cap_add 'IPC_LOCK'
+  command 'vault server'
+  env docker_env(node['vault']['config']) if node['vault']['config']
+  port "#{node['vault']['port']}:9000"
+  repo node['vault']['repo']
+  restart_policy 'always'
+  tag node['vault']['tag']
+  volumes node['vault']['volumes']
+end
