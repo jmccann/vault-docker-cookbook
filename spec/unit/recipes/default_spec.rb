@@ -37,7 +37,8 @@ describe 'vault-docker::default' do
     end
 
     it 'starts vault container' do
-      expect(chef_run).to run_docker_container('vault server').with(command: 'vault server')
+      expect(chef_run).to run_docker_container('vault')
+        .with(command: 'server', port: '8200:8200')
     end
   end
 
@@ -61,13 +62,13 @@ describe 'vault-docker::default' do
     end
 
     it 'starts vault container' do
-      expect(chef_run).to run_docker_container('vault server')
-        .with(command: 'vault server')
+      expect(chef_run).to run_docker_container('vault')
+        .with(command: 'server')
     end
 
     describe 'vault container environment' do
       let(:vault_env) do
-        chef_run.docker_container('vault server').env
+        chef_run.docker_container('vault').env
       end
 
       it 'sets vault loval config' do

@@ -21,13 +21,13 @@ docker_image 'vault' do
   tag node['vault']['tag']
 end
 
-docker_container 'vault server' do
+docker_container 'vault' do
   cap_add 'IPC_LOCK'
-  command 'vault server'
+  command 'server'
   env docker_env(node['vault']['config']) if node['vault']['config']
-  port "#{node['vault']['port']}:9000"
+  port node['vault']['port']
   repo node['vault']['repo']
   restart_policy 'always'
   tag node['vault']['tag']
-  volumes node['vault']['volumes']
+  volumes node['vault']['volumes'] if node['vault']['volumes']
 end

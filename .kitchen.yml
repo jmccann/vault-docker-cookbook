@@ -18,8 +18,20 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[chef-apt-docker::default]
+      - recipe[jmccann-docker-host::default]
       - recipe[vault-docker::default]
     verifier:
       inspec_tests:
         - test/smoke/default
     attributes:
+      jmccann-docker-host:
+        docker:
+          service:
+            storage_driver: overlayfs
+      vault:
+        config:
+          vault_local_config:
+            backend:
+              file:
+                path: /vault/file
