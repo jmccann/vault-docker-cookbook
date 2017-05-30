@@ -37,10 +37,8 @@ suites:
             storage:
               file:
                 path: /vault/file
-        entrypoint: /root/vault-entrypoint.sh
         port:
           - "8200:8200"
           - "8201:8201"
         volumes:
           - /root/ssl:/vault/ssl
-          - /root/vault-entrypoint.sh:/root/vault-entrypoint.sh

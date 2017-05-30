@@ -16,10 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cookbook_file '/root/vault-entrypoint.sh' do
-  mode '0755'
-end
-
 docker_image 'vault' do
   repo node['vault-docker']['repo']
   tag node['vault-docker']['tag']

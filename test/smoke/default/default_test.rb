@@ -15,6 +15,9 @@ describe command('docker logs vault') do
 
   # Using file storage backend
   its(:stdout) { should include("Storage: file") }
+
+  # Using TLS
+  its(:stdout) { should include('tls: "enabled"') }
 end
 
 describe command('vault init -tls-skip-verify') do
