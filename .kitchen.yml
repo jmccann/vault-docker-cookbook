@@ -28,6 +28,6 @@ suites:
       vault-docker:
         config:
           vault_local_config:
-            backend:
+            storage:
               file:
                 path: /vault/file

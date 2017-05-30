@@ -10,5 +10,9 @@ describe port(8200) do
 end
 
 describe command('docker logs vault') do
+  # Has mlock enabled and working
   its(:stderr) { should_not include("Couldn't start vault with IPC_LOCK") }
+
+  # Using file storage backend
+  its(:stderr) { should include("Storage: file") }
 end
