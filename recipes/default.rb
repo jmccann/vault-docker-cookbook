@@ -16,6 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cookbook_file '/root/vault-entrypoint.sh' do
+  mode '0755'
+end
+
 docker_image 'vault' do
   repo node['vault-docker']['repo']
   tag node['vault-docker']['tag']
@@ -24,7 +28,9 @@ end
 docker_container 'vault' do
   cap_add 'IPC_LOCK'
   command 'server'
+  entrypoint node['vault-docker']['entrypoint'] if node['vault-docker']['entrypoint']
   env docker_env(node['vault-docker']['config']) if node['vault-docker']['config']
+  network_mode node['vault-docker']['network_mode']
   port node['vault-docker']['port']
   repo node['vault-docker']['repo']
   restart_policy 'always'

@@ -19,6 +19,8 @@ suites:
   - name: default
     run_list:
       - recipe[chef-apt-docker::default]
+      - recipe[test::default]
+      - recipe[test::certs]
       - recipe[jmccann-docker-host::default]
       - recipe[vault-docker::default]
     verifier:
@@ -28,6 +30,17 @@ suites:
       vault-docker:
         config:
           vault_local_config:
+            listener:
+              tcp:
+                tls_cert_file: /vault/ssl/vault.crt
+                tls_key_file: /vault/ssl/vault.key
             storage:
               file:
                 path: /vault/file
+        entrypoint: /root/vault-entrypoint.sh
+        port:
+          - "8200:8200"
+          - "8201:8201"
+        volumes:
+          - /root/ssl:/vault/ssl
+          - /root/vault-entrypoint.sh:/root/vault-entrypoint.sh

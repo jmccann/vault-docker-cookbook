@@ -14,5 +14,9 @@ describe command('docker logs vault') do
   its(:stderr) { should_not include("Couldn't start vault with IPC_LOCK") }
 
   # Using file storage backend
-  its(:stderr) { should include("Storage: file") }
+  its(:stdout) { should include("Storage: file") }
+end
+
+describe command('vault init -tls-skip-verify') do
+  its(:stdout) { should include("Vault initialized with 5 keys") }
 end
