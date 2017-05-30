@@ -9,6 +9,6 @@ describe port(8200) do
   it { should be_listening }
 end
 
-describe command ('docker logs vault') do
-  its(:stderr) { should_not include("Couldn't start vault with IPC_LOCK")}
+describe command('docker logs vault') do
+  its(:stderr) { should_not include("Couldn't start vault with IPC_LOCK") }
 end
