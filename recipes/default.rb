@@ -28,6 +28,7 @@ docker_container 'vault' do
   port node['vault-docker']['port']
   repo node['vault-docker']['repo']
   restart_policy 'always'
+  sensitive node['vault-docker']['sensitive']
   tag node['vault-docker']['tag']
   volumes node['vault-docker']['volumes'] if node['vault-docker']['volumes']
 end
