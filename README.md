@@ -1,6 +1,6 @@
 # vault-docker
 
-TODO: Enter the cookbook description here.
+Cookbook to setup vault using docker.
 
 ## Supported Platforms
 
@@ -9,9 +9,7 @@ Tested And Validated On
 
 ## Usage
 
-TODO: Include usage patterns of any providers or recipes.
-
-### vault-docker::default
+### recipe[vault-docker::default]
 
 Include `vault-docker` in your run_list.
 
@@ -22,6 +20,18 @@ Include `vault-docker` in your run_list.
   ]
 }
 ```
+
+### Attributes
+
+Attribute | Description | Type | Default
+----------|-------------|------|--------
+`node['vault-docker']['config']` | Hash of configuration environment variables for Consul.  Primary way to configure how vault-docker starts. See [vault-docker docker image](https://hub.docker.com/_/vault/) and [vault configuration file docs](https://www.vault.io/docs/agent/options.html#configuration-files) for more information.  See [`.kitchen.yml`](.kitchen.yml) for examples of using this to drive behavior. | Hash | `nil`
+`node['vault-docker']['entrypoint']` | Start the vault container with your own entrypoint.  Must be added as volume to container. | String | `nil`
+`node['vault-docker']['port']` | Port(s) to expose from docker container. See [docker cookbook](https://github.com/chef-cookbooks/docker#properties-7) for more info. | String | `'8200:8200'`
+`node['vault-docker']['repo']` | The docker repo for the image to use | String | `'vault'`
+`node['vault-docker']['tag']` | The docker tag for the image to use | String | `'0.8.3'`
+`node['vault-docker']['sensitive']` | Whether to consider container resource sensitive or not | Boolean | `false`
+`node['vault-docker']['volumes']` | Volumes to have added to your container | Array | `nil`
 
 ## Testing
 
