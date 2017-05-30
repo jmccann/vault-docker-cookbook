@@ -11,3 +11,5 @@ source_url 'https://github.com/jmccann/vault-docker-cookbook'
 issues_url 'https://github.com/jmccann/vault-docker-cookbook/issues'
 
 depends 'jmccann-docker-host', '~> 2.0'
+
+supports 'ubuntu', '>= 16.04'
