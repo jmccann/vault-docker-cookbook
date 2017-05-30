@@ -25,7 +25,7 @@ Include `vault-docker` in your run_list.
 
 Attribute | Description | Type | Default
 ----------|-------------|------|--------
-`node['vault-docker']['config']` | Hash of configuration environment variables for Consul.  Primary way to configure how vault-docker starts. See [vault-docker docker image](https://hub.docker.com/_/vault/) and [vault configuration file docs](https://www.vault.io/docs/agent/options.html#configuration-files) for more information.  See [`.kitchen.yml`](.kitchen.yml) for examples of using this to drive behavior. | Hash | `nil`
+`node['vault-docker']['config']` | Hash of configuration environment variables for Consul.  Primary way to configure how vault-docker starts. See [vault-docker docker image](https://hub.docker.com/_/vault/) and [vault configuration file docs](vault configuration) for more information.  See [`.kitchen.yml`](.kitchen.yml) for examples of using this to drive behavior. | Hash | `nil`
 `node['vault-docker']['entrypoint']` | Start the vault container with your own entrypoint.  Must be added as volume to container. | String | `nil`
 `node['vault-docker']['port']` | Port(s) to expose from docker container. See [docker cookbook](https://github.com/chef-cookbooks/docker#properties-7) for more info. | String | `'8200:8200'`
 `node['vault-docker']['repo']` | The docker repo for the image to use | String | `'vault'`
