@@ -47,8 +47,8 @@ describe 'vault-docker::default' do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
       runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04') do |node, _server|
-        node.normal['vault']['config']['vault_local_config'] = '{"backend": {"file": {"path": "/vault/file"}}, "default_lease_ttl": "168h", "max_lease_ttl": "720h"}'
-        node.normal['vault']['config']['vault_dev_root_token_id'] = 'abcd1234'
+        node.normal['vault-docker']['config']['vault_local_config'] = '{"backend": {"file": {"path": "/vault/file"}}, "default_lease_ttl": "168h", "max_lease_ttl": "720h"}'
+        node.normal['vault-docker']['config']['vault_dev_root_token_id'] = 'abcd1234'
       end
       runner.converge(described_recipe)
     end

@@ -25,11 +25,7 @@ suites:
       inspec_tests:
         - test/smoke/default
     attributes:
-      jmccann-docker-host:
-        docker:
-          service:
-            storage_driver: overlayfs
-      vault:
+      vault-docker:
         config:
           vault_local_config:
             backend:

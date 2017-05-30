@@ -17,17 +17,17 @@
 # limitations under the License.
 
 docker_image 'vault' do
-  repo node['vault']['repo']
-  tag node['vault']['tag']
+  repo node['vault-docker']['repo']
+  tag node['vault-docker']['tag']
 end
 
 docker_container 'vault' do
   cap_add 'IPC_LOCK'
   command 'server'
-  env docker_env(node['vault']['config']) if node['vault']['config']
-  port node['vault']['port']
-  repo node['vault']['repo']
+  env docker_env(node['vault-docker']['config']) if node['vault-docker']['config']
+  port node['vault-docker']['port']
+  repo node['vault-docker']['repo']
   restart_policy 'always'
-  tag node['vault']['tag']
-  volumes node['vault']['volumes'] if node['vault']['volumes']
+  tag node['vault-docker']['tag']
+  volumes node['vault-docker']['volumes'] if node['vault-docker']['volumes']
 end
