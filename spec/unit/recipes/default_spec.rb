@@ -46,6 +46,7 @@ describe 'vault-docker::default' do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
       runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04') do |node, _server|
+        node.normal['vault-docker']['command']['args'] = '-log-level=debug'
         node.normal['vault-docker']['config']['vault_local_config'] = '{"backend": {"file": {"path": "/vault/file"}}, "default_lease_ttl": "168h", "max_lease_ttl": "720h"}'
         node.normal['vault-docker']['config']['vault_dev_root_token_id'] = 'abcd1234'
       end
@@ -62,7 +63,7 @@ describe 'vault-docker::default' do
 
     it 'starts vault container' do
       expect(chef_run).to run_docker_container('vault')
-        .with(command: 'server')
+        .with(command: 'server -log-level=debug')
     end
 
     describe 'vault container environment' do

@@ -23,7 +23,7 @@ end
 
 docker_container 'vault' do
   cap_add 'IPC_LOCK'
-  command 'server'
+  command "server #{node['vault-docker']['command']['args']}".strip
   entrypoint node['vault-docker']['entrypoint'] if node['vault-docker']['entrypoint']
   env docker_env(node['vault-docker']['config']) if node['vault-docker']['config']
   network_mode node['vault-docker']['network_mode']

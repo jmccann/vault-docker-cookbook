@@ -1,3 +1,4 @@
+default['vault-docker']['command']['args'] = ''
 default['vault-docker']['network_mode'] = 'host'
 default['vault-docker']['port'] = '8200:8200'
 default['vault-docker']['repo'] = 'vault'
